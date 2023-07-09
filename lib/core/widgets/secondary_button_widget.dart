@@ -15,14 +15,14 @@ class SecondaryButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(8),
       color: kSecondaryColor,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
         child: SizedBox(
           width: width,
-          height: 50,
+          height: 48,
           child: Center(
             child: Text(
               text,

@@ -1,91 +1,133 @@
-import 'package:bootcamp_starter/core/util/assets.dart';
-import 'package:bootcamp_starter/core/widgets/custom_labeled_textfield_widget.dart';
-import 'package:bootcamp_starter/core/widgets/primary_outlined_button_widget.dart';
-import 'package:bootcamp_starter/core/widgets/secondary_button_widget.dart';
-import 'package:bootcamp_starter/features/auth/register_view.dart';
-import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// ignore_for_file: use_build_context_synchronously
 
-import 'widgets/google_button_widget.dart';
+import 'package:bootcamp_starter/core/util/assets.dart';
+import 'package:bootcamp_starter/core/util/constants.dart';
+import 'package:bootcamp_starter/core/widgets/CustomTextTitle.dart';
+import 'package:bootcamp_starter/features/auth/register_view.dart';
+import 'package:bootcamp_starter/features/auth/widgets/CustomTextFormAuth.dart';
+import 'package:bootcamp_starter/features/auth/widgets/textSignUp.dart';
+import 'package:bootcamp_starter/features/home/NoConnection.dart';
+import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
+import 'package:bootcamp_starter/features/onbording/CustomButtonPrimary.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_offline/flutter_offline.dart';
+
+import 'package:get/get.dart';
+
+import '../../../main.dart';
 
 class LoginView extends StatelessWidget {
+  LoginView({super.key});
   static String id = '/loginView';
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  LoginView({super.key});
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 30,
+    return SafeArea(
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: OfflineBuilder(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Form(
+              key: loginFormKey,
+              child: Container(
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 50),
+                  child: Column(
+                    children: [
+                      Image.asset(AssetsData.login),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: CustomTextTitle(
+                          text: 'login',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      CustomTextFormAuth(
+                        hidepassword: false,
+                        textInputType: TextInputType.emailAddress,
+                        //  myController: provider.emailLoginPage,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'emailEmpty'.tr;
+                          }
+                          return null;
+                        },
+                        hintText: 'Enter Your Email', labelText: 'Email',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomTextFormAuth(
+                        textInputType: TextInputType.visiblePassword,
+                        hidepassword: true,
+                        // pressSuffixIcon: () {
+                        //   provider.changeShowPasswordLogin();
+                        // },
+                        validator: (value) {},
+                        //   myController: provider.passwordLoginPage,
+                        hintText: 'password',
+
+                        // iconData: showPasswordLogin
+                        //     ? Icons.visibility
+                        //     : Icons.visibility_off,
+                        labelText: 'password',
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'Forgot Password?',
+                              textAlign: TextAlign.end,
+                              style: const TextStyle(
+                                  color: primaryColor, fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      CustomButtonPrimary(
+                        text: 'Sign In'.tr,
+                        onpressed: () async {
+                          Navigator.pushNamed(context, MainAppView.id);
+                        },
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      CustomTextSignUpOrSignin(
+                        textone: 'Don\'t have an account?',
+                        texttwo: 'Create an account',
+                        onTap: () {
+                          Navigator.pushNamed(context, RegisterView.id);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                const Spacer(),
-                SizedBox(
-                    height: MediaQuery.of(context).size.height / 5,
-                    child: Hero(
-                        tag: 'authImage',
-                        child: Image.asset(AssetsData.login))),
-                const Spacer(),
-                PrimaryLabeledTextFieldWidget(
-                  controller: emailController,
-                  hint: 'example@gmail.com',
-                  keyboardType: TextInputType.emailAddress,
-                  label: 'Email',
-                ),
-                const SizedBox(
-                  height: 14,
-                ),
-                PrimaryLabeledTextFieldWidget(
-                  controller: passwordController,
-                  hint: 'Enter password',
-                  label: 'password',
-                  password: true,
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                SecondaryButtonWidget(
-                    onTap: () {
-                      Navigator.pushNamed(context, MainAppView.id);
-                    },
-                    text: 'LOGIN'),
-                const SizedBox(
-                  height: 24,
-                ),
-                PrimaryOutlinedButtonWidget(
-                    onTap: () {
-                      Navigator.pushNamed(context, RegisterView.id);
-                    },
-                    text: 'REGISTER'),
-                const SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  '-  or  -',
-                  style: TextStyle(
-                      color: Colors.grey.shade500,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                GoogleButtonWidget(onTap: () {}),
-                const Spacer(),
-              ],
+              )),
             ),
           ),
+          connectivityBuilder: (BuildContext context,
+              ConnectivityResult connectivity, Widget child) {
+            final bool connected = connectivity != ConnectivityResult.none;
+            return connected ? child : NoConnectionScreen();
+          },
         ),
       ),
     );
