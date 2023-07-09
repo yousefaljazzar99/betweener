@@ -3,3 +3,4 @@ class AssetsData {
   static const authImage = 'assets/imgs/auth.svg';
   static const qrImage = 'assets/imgs/qr_code.png';
 }
+//test
