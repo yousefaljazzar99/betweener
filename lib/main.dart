@@ -5,6 +5,7 @@ import 'package:bootcamp_starter/features/home/home_view.dart';
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
 import 'package:bootcamp_starter/features/onbording/onbording_view.dart';
 import 'package:bootcamp_starter/features/profile/profile_view.dart';
+import 'package:bootcamp_starter/splash_page/splash_page.dart';
 import 'package:flutter/material.dart';
 
 import 'core/util/constants.dart';
@@ -31,14 +32,16 @@ class MyApp extends StatelessWidget {
                 color: kPrimaryColor),
           ),
           scaffoldBackgroundColor: kScaffoldColor),
-      home: const OnBoardingView(),
+      home: const SplashScreen(),
       routes: {
+        OnBoardingView.id: (context) => const OnBoardingView(),
         LoginView.id: (context) => LoginView(),
         RegisterView.id: (context) => RegisterView(),
         HomeView.id: (context) => const HomeView(),
         MainAppView.id: (context) => const MainAppView(),
         ProfileView.id: (context) => const ProfileView(),
         ReceiveView.id: (context) => const ReceiveView(),
+        SplashScreen.id: (context) => const SplashScreen(),
       },
     );
   }
