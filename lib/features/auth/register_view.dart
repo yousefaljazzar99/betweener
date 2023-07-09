@@ -55,7 +55,7 @@ class RegisterView extends StatelessWidget {
                   padding: EdgeInsets.only(top: 50),
                   child: Column(
                     children: [
-                      Image.asset(AssetsData.login),
+                      Image.asset(AssetsData.signup),
                       SizedBox(
                         height: 20,
                       ),

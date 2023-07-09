@@ -51,11 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
         children: [
           ScaleTransition(
             scale: animation,
-            child: Center(
-                child: SizedBox(
-                    width: 266,
-                    height: 280,
-                    child: Image.asset(AssetsData.logo))),
+            child: Center(child: SizedBox(child: Image.asset(AssetsData.logo))),
           ),
         ],
       ),

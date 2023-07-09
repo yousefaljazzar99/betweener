@@ -19,7 +19,7 @@ const kLightDangerColor = Color(0xffFEE2E7);
 const kOnLightDangerColor = Color(0xff783341);
 
 //Muhammad - Custom Our Project
-const primaryColor = Color(0xFFFF1D20);
+const primaryColor = Color(0xFFE91348);
 const blackColor = Color(0x00000000);
 const whiteColor = Color(0xFFFFFFFF);
 const linkBorderColor = Color(0xFFE3E3E3);
