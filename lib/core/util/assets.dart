@@ -13,4 +13,13 @@ class AssetsData {
   static const signup = 'assets/imgs/signup.png';
   static const welcome = 'assets/imgs/welcome.png';
 }
+
+const String ICON_PATH = 'assets/icon';
+
+class IconAssets {
+  static const String home = '$ICON_PATH/home.svg';
+  static const String profile = '$ICON_PATH/profile.svg';
+  static const String activeSharing = '$ICON_PATH/activeSharing.svg';
+}
+
 //test

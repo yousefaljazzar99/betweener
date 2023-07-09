@@ -1,3 +1,4 @@
+import 'package:bootcamp_starter/core/util/constants.dart';
 import 'package:flutter/material.dart';
 
 class ReceiveView extends StatelessWidget {
@@ -7,6 +8,21 @@ class ReceiveView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: primaryColor,
+          title: Text(
+            'Active Sharing',
+            style: TextStyle(color: whiteColor),
+          ),
+          centerTitle: true,
+          automaticallyImplyLeading: false),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [Text('هنا بداية النص ')],
+        ),
+      ),
+    );
   }
 }

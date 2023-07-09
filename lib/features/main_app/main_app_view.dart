@@ -1,3 +1,4 @@
+import 'package:bootcamp_starter/core/util/constants.dart';
 import 'package:bootcamp_starter/features/active_share/receive_view.dart';
 import 'package:bootcamp_starter/features/home/home_view.dart';
 import 'package:bootcamp_starter/features/main_app/widgets/custom_floating_nav_bar.dart';
@@ -25,11 +26,11 @@ class _MainAppViewState extends State<MainAppView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: true,
+      //   //       elevation: 0,
+      //   backgroundColor: primaryColor,
+      // ),
       body: screensList[_currentIndex],
       extendBody: true,
       bottomNavigationBar: CustomFloatingNavBar(
