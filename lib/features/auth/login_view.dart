@@ -27,12 +27,15 @@ class LoginView extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
+                SizedBox(
+                  height: 30,
+                ),
                 const Spacer(),
                 SizedBox(
                     height: MediaQuery.of(context).size.height / 5,
                     child: Hero(
                         tag: 'authImage',
-                        child: SvgPicture.asset(AssetsData.authImage))),
+                        child: Image.asset(AssetsData.login))),
                 const Spacer(),
                 PrimaryLabeledTextFieldWidget(
                   controller: emailController,

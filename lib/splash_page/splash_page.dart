@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:bootcamp_starter/core/routes/route_helper.dart';
 import 'package:bootcamp_starter/core/util/assets.dart';
 import 'package:bootcamp_starter/core/util/constants.dart';
+import 'package:bootcamp_starter/features/onbording/onBoarding.dart';
 import 'package:bootcamp_starter/features/onbording/onbording_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   static String id = '/splashScreen';
@@ -33,7 +36,8 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(
       const Duration(seconds: 3),
       () {
-        Navigator.pushNamed(context, OnBoardingView.id);
+        // Get.offAllNamed(RouteHelper.onBoarding);
+        Navigator.pushNamed(context, OnBoarding.id);
       },
     );
   }
@@ -41,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: whiteColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -49,10 +53,9 @@ class _SplashScreenState extends State<SplashScreen>
             scale: animation,
             child: Center(
                 child: SizedBox(
-              width: 266,
-              height: 280,
-              child: SvgPicture.asset(AssetsData.onBoardingImage),
-            )),
+                    width: 266,
+                    height: 280,
+                    child: Image.asset(AssetsData.logo))),
           ),
         ],
       ),
