@@ -1,4 +1,5 @@
 import 'package:bootcamp_starter/core/util/assets.dart';
+import 'package:bootcamp_starter/features/profile/Edit%20Profile/edit_profile.dart';
 import 'package:bootcamp_starter/features/profile/Followers/followers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -365,6 +366,7 @@ class ProfileView extends StatelessWidget {
                 child: CustomButtonPrimary(
                   onpressed: () {
                     // Navigator.pushNamed(context, LoginView.id);
+                    Navigator.pushNamed(context, EditProfile.id);
                   },
                   textColor: primaryColor,
                   buttonColor: whiteColor,
@@ -378,8 +380,6 @@ class ProfileView extends StatelessWidget {
     );
   }
 }
-
-
 
 // import 'package:bootcamp_starter/features/home/link_fast.dart';
 // import 'package:bootcamp_starter/core/util/assets.dart';
