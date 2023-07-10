@@ -1,10 +1,11 @@
-import 'package:bootcamp_starter/Home/qr_widget.dart';
-import 'package:bootcamp_starter/Home/search_scan.dart';
+import 'package:bootcamp_starter/core/util/assets.dart';
+import 'package:bootcamp_starter/features/home/qr_widget.dart';
+import 'package:bootcamp_starter/features/home/search_scan.dart';
 
 import 'package:flutter/material.dart';
 
 import '../core/util/bottom_nav.dart';
-import 'link_fast.dart';
+import '../features/home/link_fast.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,9 +14,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> name = ['Facebook', "Instagram", "WhatsApp"];
     List<String> urls = [
-      "images/facebook.svg",
-      "images/insta.svg",
-      "images/whatsapp.svg"
+      IconAssets.facebook,
+      IconAssets.insta,
+      IconAssets.whatsapp
     ];
     return Scaffold(
       body: CustomScrollView(

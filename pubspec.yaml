@@ -45,10 +45,18 @@ dependencies:
   provider: ^6.0.5
   google_fonts: ^5.1.0
   google_nav_bar: ^5.0.6
+  flutter_launcher_icons: ^0.13.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/imgs/logo.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -74,10 +82,10 @@ flutter:
     - assets/icon/
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
+  # https://flutter.dev/assets-and-AssetsData.#resolution-aware
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+  # https://flutter.dev/assets-and-AssetsData.#from-packages
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

@@ -27,9 +27,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 iconSize: 25,
                 text: "Profile",
                 textStyle: style,
-                onPressed: () {
-                  print("Fuck");
-                },
+                onPressed: () {},
               ),
               GButton(
                 padding:

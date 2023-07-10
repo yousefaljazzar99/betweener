@@ -5,6 +5,8 @@ import 'package:bootcamp_starter/features/home/home_view.dart';
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
 import 'package:bootcamp_starter/features/onbording/onBoarding.dart';
 import 'package:bootcamp_starter/features/onbording/onbording_view.dart';
+import 'package:bootcamp_starter/features/profile/Followers/followerPage.dart';
+import 'package:bootcamp_starter/features/profile/Followers/followers.dart';
 import 'package:bootcamp_starter/features/profile/profile_view.dart';
 import 'package:bootcamp_starter/splash_page/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +49,8 @@ class MyApp extends StatelessWidget {
         ProfileView.id: (context) => const ProfileView(),
         ReceiveView.id: (context) => const ReceiveView(),
         SplashScreen.id: (context) => const SplashScreen(),
+        FollowerScreen.id: (context) => const FollowerScreen(),
+        FollowerPage.id: (context) => const FollowerPage(),
       },
     );
   }

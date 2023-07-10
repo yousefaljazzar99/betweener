@@ -1,3 +1,4 @@
+import 'package:bootcamp_starter/core/util/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,11 +14,12 @@ class QrWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(
-          "images/qr.svg",
-          width: 250,
-          height: 250,
-        ),
+        Image.asset(AssetsData.qrcode, width: 250, height: 250),
+        // SvgPicture.asset(
+
+        //   // width: 250,
+        //   // height: 250,
+        // ),
         SizedBox(
           height: 15,
         ),
