@@ -31,6 +31,7 @@ class IconAssets {
   static const String menu = '$ICON_PATH/menu.svg';
   static const String edit = '$ICON_PATH/edit.svg';
   static const String del = '$ICON_PATH/del.svg';
+  static const String signout = '$ICON_PATH/signout.svg';
 }
 
 //test

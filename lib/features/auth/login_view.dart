@@ -14,8 +14,6 @@ import 'package:flutter_offline/flutter_offline.dart';
 
 import 'package:get/get.dart';
 
-import '../../../main.dart';
-
 class LoginView extends StatelessWidget {
   LoginView({super.key});
   static String id = '/loginView';
@@ -53,6 +51,7 @@ class LoginView extends StatelessWidget {
                         height: 30,
                       ),
                       CustomTextFormAuth(
+                    
                         hidepassword: false,
                         textInputType: TextInputType.emailAddress,
                         //  myController: provider.emailLoginPage,
