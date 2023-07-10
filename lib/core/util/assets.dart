@@ -13,6 +13,7 @@ class AssetsData {
   static const signup = 'assets/imgs/signup.png';
   static const welcome = 'assets/imgs/welcome.png';
   static const active_share = 'assets/imgs/active_share.svg';
+  static const warning = 'assets/imgs/warning.svg';
 }
 
 const String ICON_PATH = 'assets/icon';
