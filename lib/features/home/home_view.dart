@@ -1,4 +1,5 @@
 import 'package:bootcamp_starter/core/util/assets.dart';
+ 
 import 'package:bootcamp_starter/features/home/link_fast.dart';
 import 'package:bootcamp_starter/features/home/qr_widget.dart';
 import 'package:bootcamp_starter/features/home/search_scan.dart';

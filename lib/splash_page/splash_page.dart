@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:bootcamp_starter/core/routes/route_helper.dart';
+ 
 import 'package:bootcamp_starter/core/util/assets.dart';
 import 'package:bootcamp_starter/core/util/constants.dart';
 import 'package:bootcamp_starter/features/onbording/onBoarding.dart';
-import 'package:bootcamp_starter/features/onbording/onbording_view.dart';
+ 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+ 
 
 class SplashScreen extends StatefulWidget {
   static String id = '/splashScreen';
