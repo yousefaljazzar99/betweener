@@ -3,7 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({super.key});
+  final int selectedIndex;
+  final Function(int) onItemTapped;
+
+  const BottomNavigationBarWidget({
+    Key? key,
+    required this.selectedIndex,
+    required this.onItemTapped,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +20,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: GNav(
+            selectedIndex: selectedIndex,
             activeColor: Color(0xFFFF1D20),
             backgroundColor: Colors.white,
             tabBackgroundColor: Color(0xFFFF1D20).withOpacity(0.15),
@@ -23,19 +31,13 @@ class BottomNavigationBarWidget extends StatelessWidget {
               GButton(
                 padding:
                     EdgeInsets.only(left: 30, top: 10, bottom: 10, right: 8),
-                icon: Icons.person_pin,
-                iconSize: 25,
-                text: "Profile",
-                textStyle: style,
-                onPressed: () {},
-              ),
-              GButton(
-                padding:
-                    EdgeInsets.only(left: 30, top: 10, bottom: 10, right: 8),
                 icon: Icons.home,
                 iconSize: 25,
                 textStyle: style,
                 text: "Home",
+                onPressed: () {
+                  onItemTapped(0);
+                },
               ),
               GButton(
                 padding:
@@ -44,7 +46,21 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 iconSize: 25,
                 text: "Active Sharing",
                 textStyle: style,
-              )
+                onPressed: () {
+                  onItemTapped(1);
+                },
+              ),
+              GButton(
+                padding:
+                    EdgeInsets.only(left: 30, top: 10, bottom: 10, right: 8),
+                icon: Icons.person_pin,
+                iconSize: 25,
+                text: "Profile",
+                textStyle: style,
+                onPressed: () {
+                  onItemTapped(2);
+                },
+              ),
             ]),
       ),
     );

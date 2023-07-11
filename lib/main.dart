@@ -1,4 +1,6 @@
-import 'package:bootcamp_starter/features/active_share/receive_view.dart';
+import 'package:bootcamp_starter/Active%20Sharing/active_sharing.dart';
+import 'package:bootcamp_starter/Services/validation_password_strong_helper.dart';
+
 import 'package:bootcamp_starter/features/auth/login_view.dart';
 import 'package:bootcamp_starter/features/auth/register_view.dart';
 import 'package:bootcamp_starter/features/home/home_view.dart';
@@ -11,10 +13,14 @@ import 'package:bootcamp_starter/features/profile/Followers/followers.dart';
 import 'package:bootcamp_starter/features/profile/addlink.dart';
 import 'package:bootcamp_starter/features/profile/profile_view.dart';
 import 'package:bootcamp_starter/splash_page/splash_page.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'core/util/constants.dart';
+
+import 'features/auth/Api usage/Login/login_provider.dart';
+import 'features/auth/Api usage/Registration/register_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +33,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< Updated upstream
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Betweener',
@@ -57,7 +63,7 @@ class MyApp extends StatelessWidget {
         EditProfile.id: (context) => const EditProfile(),
         AddLink.id: (context) => const AddLink(),
       },
-=======
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -84,6 +90,7 @@ class MyApp extends StatelessWidget {
             ),
             scaffoldBackgroundColor: kScaffoldColor),
         home: SplashScreen(),
+
         routes: {
           OnBoarding.id: (context) => const OnBoarding(),
           OnBoardingView.id: (context) => const OnBoardingView(),
@@ -100,7 +107,7 @@ class MyApp extends StatelessWidget {
           AddLink.id: (context) => const AddLink(),
         },
       ),
->>>>>>> Stashed changes
+
     );
   }
 }

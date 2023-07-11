@@ -4,7 +4,7 @@ import 'package:bootcamp_starter/features/home/search_scan.dart';
 
 import 'package:flutter/material.dart';
 
-import '../core/util/bottom_nav.dart';
+ 
 import '../features/home/link_fast.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,8 +18,7 @@ class HomeScreen extends StatelessWidget {
       IconAssets.insta,
       IconAssets.whatsapp
     ];
-    return Scaffold(
-      body: CustomScrollView(
+    return CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
             child: Column(
@@ -40,8 +39,6 @@ class HomeScreen extends StatelessWidget {
             },
           )
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
-    );
+      );
   }
 }

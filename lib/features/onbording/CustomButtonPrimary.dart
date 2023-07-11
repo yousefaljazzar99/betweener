@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class CustomButtonPrimary extends StatelessWidget {
   final String text;
   final void Function()? onpressed;
-  Color? textColor;
-  Color? buttonColor;
+  final Color? textColor;
+  final Color? buttonColor;
 
   CustomButtonPrimary(
       {super.key,
