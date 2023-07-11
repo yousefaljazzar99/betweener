@@ -1,10 +1,14 @@
 import 'package:bootcamp_starter/features/auth/login_view.dart';
-
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
+import 'package:bootcamp_starter/features/home/home_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '../Shared Preferences/token_shared_pref.dart';
+
+
+import '../animation_route.dart';
+
 
 import '../core/util/Api static/api_response.dart';
 import '../features/auth/Api usage/Login/login_provider.dart';
@@ -30,7 +34,11 @@ class ValidationSignProcess {
           Provider.of<SignUpProvider>(context, listen: false);
       await signUpProvider.signUp(name!, email, password, confirmPassword!);
       if (signUpProvider.response.status == Status.COMPLETED) {
-        Navigator.pushNamed(context, LoginView.id);
+        Navigator.push(
+          context,
+          AnimationBetweenScreen.goToHomePageRoute(LoginView()),
+        );
+
       }
     }
   }
@@ -50,6 +58,10 @@ class ValidationSignProcess {
           await sharedPrefs.storeUserInfo(User.fromJson(userInfo));
         }
         Navigator.pushNamed(context, MainAppView.id);
+     
+
+      
+
       }
     }
   }

@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
             ),
             scaffoldBackgroundColor: kScaffoldColor),
         home: SplashScreen(),
+
         routes: {
           OnBoarding.id: (context) => const OnBoarding(),
           OnBoardingView.id: (context) => const OnBoardingView(),

@@ -25,7 +25,10 @@ class User {
     this.long,
     this.lat,
     this.fcm,
+
   });
+
+
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -60,4 +63,10 @@ class User {
       'fcm': fcm,
     };
   }
+
+   
+    );
+  }
+
+  
 }
