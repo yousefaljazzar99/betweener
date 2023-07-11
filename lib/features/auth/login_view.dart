@@ -7,14 +7,26 @@ import 'package:bootcamp_starter/features/auth/register_view.dart';
 import 'package:bootcamp_starter/features/auth/widgets/CustomTextFormAuth.dart';
 import 'package:bootcamp_starter/features/auth/widgets/textSignUp.dart';
 import 'package:bootcamp_starter/features/home/NoConnection.dart';
+<<<<<<< Updated upstream
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
+=======
+
+>>>>>>> Stashed changes
 import 'package:bootcamp_starter/features/onbording/CustomButtonPrimary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
 import 'package:get/get.dart';
 
+<<<<<<< Updated upstream
 class LoginView extends StatelessWidget {
+=======
+import '../../Services/validation_sign.dart';
+import '../../animation_route.dart';
+import '../../core/util/Api static/api_response.dart';
+
+class LoginView extends StatefulWidget {
+>>>>>>> Stashed changes
   LoginView({super.key});
   static String id = '/loginView';
 
@@ -76,6 +88,7 @@ class LoginView extends StatelessWidget {
                         //   myController: provider.passwordLoginPage,
                         hintText: 'password',
 
+<<<<<<< Updated upstream
                         // iconData: showPasswordLogin
                         //     ? Icons.visibility
                         //     : Icons.visibility_off,
@@ -93,6 +106,54 @@ class LoginView extends StatelessWidget {
                               textAlign: TextAlign.end,
                               style: const TextStyle(
                                   color: primaryColor, fontSize: 12),
+=======
+                                  // iconData: showPasswordLogin
+                                  //     ? Icons.visibility
+                                  //     : Icons.visibility_off,
+                                  labelText: 'password',
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Text(
+                                        'Forgot Password?',
+                                        textAlign: TextAlign.end,
+                                        style: const TextStyle(
+                                            color: primaryColor, fontSize: 12),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                CustomButtonPrimary(
+                                  text: 'Sign In'.tr,
+                                  onpressed: () async {
+                                    await validation
+                                        .validateAndSubmitSignIn(context);
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 50,
+                                ),
+                                CustomTextSignUpOrSignin(
+                                  textone: 'Don\'t have an account?',
+                                  texttwo: 'Create an account',
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      AnimationBetweenScreen.goToHomePageRoute(
+                                          RegisterView()),
+                                    );
+                                  },
+                                ),
+                              ],
+>>>>>>> Stashed changes
                             ),
                           ),
                         ],

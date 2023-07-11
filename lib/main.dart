@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< Updated upstream
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Betweener',
@@ -56,6 +57,50 @@ class MyApp extends StatelessWidget {
         EditProfile.id: (context) => const EditProfile(),
         AddLink.id: (context) => const AddLink(),
       },
+=======
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => SignUpProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SignInProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ShowStrongPassword(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Betweener',
+        theme: ThemeData(
+            useMaterial3: true,
+            colorSchemeSeed: kPrimaryColor,
+            appBarTheme: const AppBarTheme(
+              titleTextStyle: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: kPrimaryColor),
+            ),
+            scaffoldBackgroundColor: kScaffoldColor),
+        home: SplashScreen(),
+        routes: {
+          OnBoarding.id: (context) => const OnBoarding(),
+          OnBoardingView.id: (context) => const OnBoardingView(),
+          LoginView.id: (context) => LoginView(),
+          RegisterView.id: (context) => RegisterView(),
+          HomeView.id: (context) => const HomeView(),
+          MainAppView.id: (context) => const MainAppView(),
+          ProfileView.id: (context) => const ProfileView(),
+          ActiveSharingScreen.id: (context) => const ActiveSharingScreen(),
+          SplashScreen.id: (context) => const SplashScreen(),
+          FollowerScreen.id: (context) => const FollowerScreen(),
+          FollowerPage.id: (context) => const FollowerPage(),
+          EditProfile.id: (context) => const EditProfile(),
+          AddLink.id: (context) => const AddLink(),
+        },
+      ),
+>>>>>>> Stashed changes
     );
   }
 }
