@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
  
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../Shared Preferences/token_shared_pref.dart';
+import '../../Shared Preferences/shared_pref.dart';
 
 class QrWidget extends StatelessWidget {
   const QrWidget({super.key});

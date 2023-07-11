@@ -5,9 +5,6 @@ import 'package:bootcamp_starter/features/auth/login_view.dart';
 import 'package:bootcamp_starter/features/home/NoConnection.dart';
 import 'package:bootcamp_starter/features/onbording/CustomButtonPrimary.dart';
 
-import 'package:bootcamp_starter/features/onbording/Onbording/customdotController.dart';
-
- 
 import 'package:bootcamp_starter/features/onbording/Onbording/cutomslider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';

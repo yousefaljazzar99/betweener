@@ -1,7 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
- 
-
 import 'package:bootcamp_starter/core/widgets/CustomTextTitle.dart';
 
 import 'package:bootcamp_starter/features/auth/widgets/CustomTextFormAuth.dart';
@@ -10,14 +8,15 @@ import 'package:bootcamp_starter/features/home/NoConnection.dart';
 import 'package:bootcamp_starter/features/onbording/CustomButtonPrimary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:google_fonts/google_fonts.dart';
 
- 
 import 'package:provider/provider.dart';
 
 import '../../Services/validation_password_strong_helper.dart';
 import '../../Services/validation_sign.dart';
 import '../../core/util/Api static/api_response.dart';
- 
+
+import '../../core/util/constants.dart';
 import 'Api usage/Registration/register_provider.dart';
 
 class RegisterView extends StatefulWidget {
@@ -73,6 +72,8 @@ class _RegisterViewState extends State<RegisterView> {
 //sisi1234
   @override
   Widget build(BuildContext context) {
+    TextStyle style = GoogleFonts.aBeeZee(
+        color: primaryColor, fontSize: 16, fontWeight: FontWeight.w300);
     final password = Provider.of<ShowStrongPassword>(context);
     return SafeArea(
       child: Scaffold(
@@ -81,7 +82,10 @@ class _RegisterViewState extends State<RegisterView> {
             builder: (context, signUpProvider, child) {
               return signUpProvider.response.status == Status.LOADING
                   ? Center(
-                      child: Text("Please wait.."),
+                      child: Text(
+                        "Wait...",
+                        style: style,
+                      ),
                     )
                   : Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),

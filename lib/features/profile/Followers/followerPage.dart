@@ -64,7 +64,7 @@ class FollowerPage extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      "Followers",
+                      "Profile",
                       style: style,
                     ),
                   )
