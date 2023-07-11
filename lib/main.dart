@@ -33,37 +33,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Betweener',
-      theme: ThemeData(
-          useMaterial3: true,
-          colorSchemeSeed: kPrimaryColor,
-          appBarTheme: const AppBarTheme(
-            titleTextStyle: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: kPrimaryColor),
-          ),
-          scaffoldBackgroundColor: kScaffoldColor),
-      home: const SplashScreen(),
-      routes: {
-        OnBoarding.id: (context) => const OnBoarding(),
-        OnBoardingView.id: (context) => const OnBoardingView(),
-        LoginView.id: (context) => LoginView(),
-        RegisterView.id: (context) => RegisterView(),
-        HomeView.id: (context) => const HomeView(),
-        MainAppView.id: (context) => const MainAppView(),
-        ProfileView.id: (context) => const ProfileView(),
-        ReceiveView.id: (context) => const ReceiveView(),
-        SplashScreen.id: (context) => const SplashScreen(),
-        FollowerScreen.id: (context) => const FollowerScreen(),
-        FollowerPage.id: (context) => const FollowerPage(),
-        EditProfile.id: (context) => const EditProfile(),
-        AddLink.id: (context) => const AddLink(),
-      },
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -107,7 +76,6 @@ class MyApp extends StatelessWidget {
           AddLink.id: (context) => const AddLink(),
         },
       ),
-
     );
   }
 }

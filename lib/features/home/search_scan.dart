@@ -1,13 +1,17 @@
 import 'package:bootcamp_starter/core/util/assets.dart';
- 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../Shared Preferences/token_shared_pref.dart';
 
 class SearchScanContainerWidget extends StatelessWidget {
   const SearchScanContainerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SharedAppPreferences sharedPrefs = SharedAppPreferences();
+
     return SafeArea(
       child: Container(
         height: 110,
@@ -26,7 +30,7 @@ class SearchScanContainerWidget extends StatelessWidget {
               ),
               radius: 30,
             ),
-            const Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -40,11 +44,25 @@ class SearchScanContainerWidget extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Text('Muhammad Hamad',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFFFF1D20),
-                        fontWeight: FontWeight.bold))
+                FutureBuilder(
+                  future: sharedPrefs.retrieveUserInfo(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(snapshot.data!.name,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFFF1D20),
+                              fontWeight: FontWeight.bold));
+                    } else {
+                      return Container(
+                        width: 80,
+                        height: 30,
+                        decoration:
+                            BoxDecoration(color: Colors.black.withOpacity(0.1)),
+                      );
+                    }
+                  },
+                )
               ],
             ),
             Padding(

@@ -8,27 +8,17 @@ import 'package:bootcamp_starter/features/auth/register_view.dart';
 import 'package:bootcamp_starter/features/auth/widgets/CustomTextFormAuth.dart';
 import 'package:bootcamp_starter/features/auth/widgets/textSignUp.dart';
 import 'package:bootcamp_starter/features/home/NoConnection.dart';
-
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
-=======
-
- 
 import 'package:bootcamp_starter/features/onbording/CustomButtonPrimary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-class LoginView extends StatelessWidget {
-
-import '../../Services/validation_sign.dart';
-import '../../animation_route.dart';
-import '../../core/util/Api static/api_response.dart';
-
-class LoginView extends StatefulWidget {
 import '../../Services/validation_sign.dart';
 import '../../core/util/Api static/api_response.dart';
+
+
+
 
 class LoginView extends StatefulWidget {
   LoginView({super.key});
@@ -133,6 +123,7 @@ class _LoginViewState extends State<LoginView> {
                                   hintText: 'password',
 
 
+
                         // iconData: showPasswordLogin
                         //     ? Icons.visibility
                         //     : Icons.visibility_off,
@@ -150,28 +141,7 @@ class _LoginViewState extends State<LoginView> {
                               textAlign: TextAlign.end,
                               style: const TextStyle(
                                   color: primaryColor, fontSize: 12),
-
-                                  // iconData: showPasswordLogin
-                                  //     ? Icons.visibility
-                                  //     : Icons.visibility_off,
-                                  labelText: 'password',
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Text(
-                                        'Forgot Password?',
-                                        textAlign: TextAlign.end,
-                                        style: const TextStyle(
-                                            color: primaryColor, fontSize: 12),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+   
                                 SizedBox(
                                   height: 30,
                                 ),
@@ -189,6 +159,7 @@ class _LoginViewState extends State<LoginView> {
                                   textone: 'Don\'t have an account?',
                                   texttwo: 'Create an account',
                                   onTap: () {
+
                                     Navigator.push(
                                       context,
                                       AnimationBetweenScreen.goToHomePageRoute(
@@ -198,8 +169,7 @@ class _LoginViewState extends State<LoginView> {
                                 ),
                               ],
 
-                                    Navigator.pushNamed(
-                                        context, RegisterView.id);
+
                                   },
                                 ),
                               ],
@@ -219,4 +189,4 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
-}
+
