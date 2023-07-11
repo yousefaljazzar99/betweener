@@ -15,8 +15,7 @@ class AddLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController TitleController = TextEditingController();
     final TextEditingController linkController = TextEditingController();
-
-    final TextEditingController text = TextEditingController();
+ 
     TextStyle style = GoogleFonts.aBeeZee(
         color: Color(0xFFFF1D20), fontSize: 16, fontWeight: FontWeight.w300);
 

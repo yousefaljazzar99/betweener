@@ -1,6 +1,6 @@
 import 'package:bootcamp_starter/features/active_share/user_card.dart';
 import 'package:bootcamp_starter/core/util/assets.dart';
-import 'package:bootcamp_starter/core/util/bottom_nav.dart';
+ 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

@@ -1,8 +1,10 @@
 import 'package:bootcamp_starter/core/util/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+ 
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../Shared Preferences/token_shared_pref.dart';
 
 class QrWidget extends StatelessWidget {
   const QrWidget({super.key});
@@ -23,9 +25,27 @@ class QrWidget extends StatelessWidget {
         SizedBox(
           height: 15,
         ),
-        Text(
-          "Scan the QR code",
-          style: style,
+        GestureDetector(
+          onTap: () async {
+            // Create a SharedAppPreferences object
+            SharedAppPreferences sharedPrefs = SharedAppPreferences();
+
+            // Retrieve the token from SharedPreferences using the retrieveToken method of SharedAppPreferences
+            String? token = await sharedPrefs.retrieveToken();
+
+            // Check if the token is not null
+            if (token != null) {
+              // The token was successfully retrieved, so you can print it
+              print(token);
+            } else {
+              // The token was not found in SharedPreferences
+              print('Token not found');
+            }
+          },
+          child: Text(
+            "Scan the QR code",
+            style: style,
+          ),
         ),
         SizedBox(
           height: 5,
