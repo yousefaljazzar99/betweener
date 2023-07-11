@@ -5,17 +5,18 @@ class CustomTextFormAuth extends StatelessWidget {
   final String hintText;
   final String labelText;
   final IconData? iconData;
-
+  final Function(String)? onChange;
   final TextEditingController? myController;
   final bool? hidepassword;
-  Function()? pressSuffixIcon;
-  TextInputType? textInputType;
+  final Function()? pressSuffixIcon;
+  final TextInputType? textInputType;
   final Function(String?)? validator;
 
   CustomTextFormAuth(
       {super.key,
       required this.hintText,
       required this.labelText,
+      this.onChange,
       this.iconData,
       this.myController,
       this.textInputType,
@@ -38,6 +39,7 @@ class CustomTextFormAuth extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(bottom: 15),
           child: TextFormField(
+            onChanged: onChange,
             cursorColor: primaryColor,
             keyboardType: textInputType,
             obscureText: hidepassword ?? false,

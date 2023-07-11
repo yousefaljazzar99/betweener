@@ -1,11 +1,11 @@
-import 'dart:math';
-
+ 
 import 'package:bootcamp_starter/features/active_share/user_card.dart';
 import 'package:bootcamp_starter/features/profile/Followers/followerPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+ 
 class FollowerScreen extends StatelessWidget {
   static String id = '/followerScreen';
 
@@ -78,9 +78,14 @@ class FollowerScreen extends StatelessWidget {
                   },
                   child: UserCardWidget());
             },
-          )
+          ),
         ],
       ),
+      // bottomNavigationBar: BottomNavigationBarWidget(
+      //   homeId: HomeView.id,
+      //   profileId: ProfileView.id,
+      //   activeShareId: ActiveSharingScreen.id,
+      // ),
     );
   }
 }

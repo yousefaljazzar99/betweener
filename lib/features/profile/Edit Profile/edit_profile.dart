@@ -1,10 +1,9 @@
 import 'package:bootcamp_starter/core/util/constants.dart';
 import 'package:bootcamp_starter/features/onbording/CustomButtonPrimary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/util/assets.dart';
 import '../../auth/widgets/CustomTextFormAuth.dart';
 
 class EditProfile extends StatelessWidget {
@@ -19,7 +18,7 @@ class EditProfile extends StatelessWidget {
         TextEditingController(text: "@muhammad");
     final TextEditingController bioController =
         TextEditingController(text: "example@gmail.com");
-    final TextEditingController text = TextEditingController();
+
     TextStyle style = GoogleFonts.aBeeZee(
         color: Color(0xFFFF1D20), fontSize: 16, fontWeight: FontWeight.w300);
 

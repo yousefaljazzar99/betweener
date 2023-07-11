@@ -10,7 +10,7 @@ class CustomTextFeild extends StatelessWidget {
     this.keyboardType,
     this.suffixIcon,
     this.textInputAction,
-    this.textEnable,
+   
     this.hidepassword,
     this.obscureText = false,
     required this.controller,
@@ -22,11 +22,11 @@ class CustomTextFeild extends StatelessWidget {
   final Widget? suffixIcon;
   final TextInputAction? textInputAction;
   final String label;
-  bool showPass = false;
+  final bool showPass = false;
   final bool? hidepassword;
 
-  bool? obscureText;
-  bool? textEnable = true;
+  final bool? obscureText;
+  final bool? textEnable = true;
   @override
   Widget build(BuildContext context) {
     return Column(

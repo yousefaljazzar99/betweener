@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomButtonOnBoarding extends GetView<OnBoardingControllerImp> {
-  String text;
-  Color textColor;
-  Color buttonColor;
+  final String text;
+  final Color textColor;
+  final Color buttonColor;
   CustomButtonOnBoarding(
       {required this.text, required this.textColor, required this.buttonColor});
 

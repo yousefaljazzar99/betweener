@@ -1,9 +1,11 @@
-import 'package:bootcamp_starter/core/util/constants.dart';
-import 'package:bootcamp_starter/features/active_share/receive_view.dart';
+import 'package:bootcamp_starter/Active%20Sharing/active_sharing.dart';
+ 
 import 'package:bootcamp_starter/features/home/home_view.dart';
-import 'package:bootcamp_starter/features/main_app/widgets/custom_floating_nav_bar.dart';
+ 
 import 'package:bootcamp_starter/features/profile/profile_view.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/util/bottom_nav.dart';
 
 class MainAppView extends StatefulWidget {
   static String id = '/mainAppView';
@@ -15,32 +17,37 @@ class MainAppView extends StatefulWidget {
 }
 
 class _MainAppViewState extends State<MainAppView> {
-  int _currentIndex = 1;
+  int _selectedIndex = 0;
 
-  late List<Widget?> screensList = [
-    const ReceiveView(),
-    const HomeView(),
-    const ProfileView()
+  static const List<Widget> _widgetOptions = <Widget>[
+    HomeView(),
+    ActiveSharingScreen(),
+    ProfileView(),
   ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: true,
-      //   //       elevation: 0,
-      //   backgroundColor: primaryColor,
-      // ),
-      body: screensList[_currentIndex],
+      body: _widgetOptions.elementAt(_selectedIndex),
       extendBody: true,
-      bottomNavigationBar: CustomFloatingNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+      bottomNavigationBar: BottomNavigationBarWidget(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
+      // bottomNavigationBar: CustomFloatingNavBar(
+      //   currentIndex: _currentIndex,
+      //   onTap: (index) {
+      //     setState(() {
+      //       _currentIndex = index;
+      //     });
+      //   },
+      // ),
     );
   }
 }
