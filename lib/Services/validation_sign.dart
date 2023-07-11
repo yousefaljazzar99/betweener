@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../Shared Preferences/token_shared_pref.dart';
 
+import '../animation_route.dart';
+
 import '../core/util/Api static/api_response.dart';
 import '../features/auth/Api usage/Login/login_provider.dart';
 import '../features/auth/Api usage/Registration/register_provider.dart';
@@ -29,6 +31,11 @@ class ValidationSignProcess {
           Provider.of<SignUpProvider>(context, listen: false);
       await signUpProvider.signUp(name!, email, password, confirmPassword!);
       if (signUpProvider.response.status == Status.COMPLETED) {
+        Navigator.push(
+          context,
+          AnimationBetweenScreen.goToHomePageRoute(LoginView()),
+        );
+
         Navigator.pushNamed(context, LoginView.id);
       }
     }
@@ -48,6 +55,11 @@ class ValidationSignProcess {
           await sharedPrefs.storeToken(token);
           await sharedPrefs.storeUserInfo(User.fromJson(userInfo));
         }
+        Navigator.push(
+          context,
+          AnimationBetweenScreen.goToHomePageRoute(HomeView()),
+        );
+
         Navigator.pushNamed(context, HomeView.id);
       }
     }
