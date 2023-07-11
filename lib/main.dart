@@ -1,5 +1,6 @@
 import 'package:bootcamp_starter/Active%20Sharing/active_sharing.dart';
 import 'package:bootcamp_starter/Services/validation_password_strong_helper.dart';
+import 'package:bootcamp_starter/Shared%20Preferences/shared_pref.dart';
 
 import 'package:bootcamp_starter/features/auth/login_view.dart';
 import 'package:bootcamp_starter/features/auth/register_view.dart';
@@ -13,11 +14,9 @@ import 'package:bootcamp_starter/features/profile/Followers/followers.dart';
 import 'package:bootcamp_starter/features/profile/addlink.dart';
 import 'package:bootcamp_starter/features/profile/profile_view.dart';
 import 'package:bootcamp_starter/splash_page/splash_page.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Shared Preferences/token_shared_pref.dart';
 import 'core/util/constants.dart';
 
 import 'features/auth/Api usage/Login/login_provider.dart';
@@ -60,7 +59,7 @@ class MyApp extends StatelessWidget {
                   color: kPrimaryColor),
             ),
             scaffoldBackgroundColor: kScaffoldColor),
-        home: ProfileView(),
+        home: SplashScreen(),
         routes: {
           OnBoarding.id: (context) => const OnBoarding(),
           OnBoardingView.id: (context) => const OnBoardingView(),

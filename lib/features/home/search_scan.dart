@@ -1,9 +1,8 @@
+import 'package:bootcamp_starter/Shared%20Preferences/shared_pref.dart';
 import 'package:bootcamp_starter/core/util/assets.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../Shared Preferences/token_shared_pref.dart';
 
 class SearchScanContainerWidget extends StatelessWidget {
   const SearchScanContainerWidget({super.key});
@@ -58,7 +57,7 @@ class SearchScanContainerWidget extends StatelessWidget {
                         width: 80,
                         height: 30,
                         decoration:
-                            BoxDecoration(color: Colors.black.withOpacity(0.1)),
+                            BoxDecoration(color: Colors.grey.withOpacity(0.3)),
                       );
                     }
                   },

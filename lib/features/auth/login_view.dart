@@ -70,6 +70,7 @@ class _LoginViewState extends State<LoginView> {
         body: OfflineBuilder(
           child: Consumer<SignInProvider>(
             builder: (context, signUpProvider, child) {
+              print(signUpProvider.response.status);
               return (signUpProvider.response.status == Status.LOADING)
                   ? Center(
                       child: Text(
@@ -77,106 +78,115 @@ class _LoginViewState extends State<LoginView> {
                         style: style,
                       ),
                     )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Form(
-                        key: _formKey,
-                        child: Container(
-                            child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 50),
-                            child: Column(
-                              children: [
-                                Image.asset(AssetsData.login),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Center(
-                                  child: CustomTextTitle(
-                                    text: 'login',
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                CustomTextFormAuth(
-                                  myController: _emailController,
-                                  hidepassword: false,
-                                  textInputType: TextInputType.emailAddress,
-                                  //  myController: provider.emailLoginPage,
-                                  validator: (value) =>
-                                      validation.validateEmail()
-                                          ? null
-                                          : 'Please enter a valid email',
-                                  hintText: 'Enter Your Email',
-                                  labelText: 'Email',
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                CustomTextFormAuth(
-                                  myController: _passwordController,
-                                  textInputType: TextInputType.visiblePassword,
-                                  hidepassword: true,
-                                  // pressSuffixIcon: () {
-                                  //   provider.changeShowPasswordLogin();
-                                  // },
-                                  validator: (value) =>
-                                      validation.validateEmail()
-                                          ? null
-                                          : 'Please enter a valid Password',
-                                  //   myController: provider.passwordLoginPage,
-                                  hintText: 'password',
-
-                                  // iconData: showPasswordLogin
-                                  //     ? Icons.visibility
-                                  //     : Icons.visibility_off,
-                                  labelText: 'password',
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
+                  : signUpProvider.response.status != Status.COMPLETED
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: Form(
+                            key: _formKey,
+                            child: Container(
+                                child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 50),
+                                child: Column(
                                   children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Text(
-                                        'Forgot Password?',
-                                        textAlign: TextAlign.end,
-                                        style: const TextStyle(
-                                            color: primaryColor, fontSize: 12),
+                                    Image.asset(AssetsData.login),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Center(
+                                      child: CustomTextTitle(
+                                        text: 'login',
                                       ),
+                                    ),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                    CustomTextFormAuth(
+                                      myController: _emailController,
+                                      hidepassword: false,
+                                      textInputType: TextInputType.emailAddress,
+                                      //  myController: provider.emailLoginPage,
+                                      validator: (value) =>
+                                          validation.validateEmail()
+                                              ? null
+                                              : 'Please enter a valid email',
+                                      hintText: 'Enter Your Email',
+                                      labelText: 'Email',
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    CustomTextFormAuth(
+                                      myController: _passwordController,
+                                      textInputType:
+                                          TextInputType.visiblePassword,
+                                      hidepassword: true,
+                                      // pressSuffixIcon: () {
+                                      //   provider.changeShowPasswordLogin();
+                                      // },
+                                      validator: (value) =>
+                                          validation.validateEmail()
+                                              ? null
+                                              : 'Please enter a valid Password',
+                                      //   myController: provider.passwordLoginPage,
+                                      hintText: 'password',
+
+                                      // iconData: showPasswordLogin
+                                      //     ? Icons.visibility
+                                      //     : Icons.visibility_off,
+                                      labelText: 'password',
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Text(
+                                            'Forgot Password?',
+                                            textAlign: TextAlign.end,
+                                            style: const TextStyle(
+                                                color: primaryColor,
+                                                fontSize: 12),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    CustomButtonPrimary(
+                                      text: 'Sign In'.tr,
+                                      onpressed: () async {
+                                        await validation
+                                            .validateAndSubmitSignIn(context);
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 50,
+                                    ),
+                                    CustomTextSignUpOrSignin(
+                                      textone: 'Don\'t have an account?',
+                                      texttwo: 'Create an account',
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, RegisterView.id);
+                                      },
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                CustomButtonPrimary(
-                                  text: 'Sign In'.tr,
-                                  onpressed: () async {
-                                    await validation
-                                        .validateAndSubmitSignIn(context);
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 50,
-                                ),
-                                CustomTextSignUpOrSignin(
-                                  textone: 'Don\'t have an account?',
-                                  texttwo: 'Create an account',
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, RegisterView.id);
-                                  },
-                                ),
-                              ],
-                            ),
+                              ),
+                            )),
                           ),
-                        )),
-                      ),
-                    );
+                        )
+                      : Center(
+                          child: Text(
+                            "Wait...",
+                            style: style,
+                          ),
+                        );
             },
           ),
           connectivityBuilder: (BuildContext context,
