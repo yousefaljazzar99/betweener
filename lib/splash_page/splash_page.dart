@@ -1,12 +1,15 @@
 import 'dart:async';
 
- 
 import 'package:bootcamp_starter/core/util/assets.dart';
 import 'package:bootcamp_starter/core/util/constants.dart';
+
+import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
 import 'package:bootcamp_starter/features/onbording/onBoarding.dart';
- 
+
 import 'package:flutter/material.dart';
- 
+import 'package:provider/provider.dart';
+
+import '../Shared Preferences/shared_pref.dart';
 
 class SplashScreen extends StatefulWidget {
   static String id = '/splashScreen';
@@ -28,15 +31,20 @@ class _SplashScreenState extends State<SplashScreen>
     // _loadResource();
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     )..forward();
 
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
     Timer(
       const Duration(seconds: 3),
-      () {
-        // Get.offAllNamed(RouteHelper.onBoarding);
-        Navigator.pushNamed(context, OnBoarding.id);
+      () async {
+        SharedAppPreferences sharedPrefs = context.read<SharedAppPreferences>();
+
+        if (await sharedPrefs.retrieveToken() == null) {
+          Navigator.pushNamed(context, OnBoarding.id);
+        } else {
+          Navigator.pushNamed(context, MainAppView.id);
+        }
       },
     );
   }

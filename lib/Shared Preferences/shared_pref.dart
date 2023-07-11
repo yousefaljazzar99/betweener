@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/auth/Api usage/model.dart';
@@ -37,21 +36,20 @@ class SharedAppPreferences {
         'en';
   }
 
-Future<void> storeUserInfo(User user) async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setString(userInfoKey, jsonEncode(user.toJson()));
-}
-
-Future<User?> retrieveUserInfo() async {
-  final prefs = await SharedPreferences.getInstance();
-  String? userInfoString = prefs.getString(userInfoKey);
-  if (userInfoString != null) {
-    return User.fromJson(jsonDecode(userInfoString));
-  } else {
-    return null;
+  Future<void> storeUserInfo(User user) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(userInfoKey, jsonEncode(user.toJson()));
   }
-}
 
+  Future<User?> retrieveUserInfo() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? userInfoString = prefs.getString(userInfoKey);
+    if (userInfoString != null) {
+      return User.fromJson(jsonDecode(userInfoString));
+    } else {
+      return null;
+    }
+  }
 
   Future<void> storeToken(String token) async {
     final prefs = await SharedPreferences.getInstance();

@@ -17,6 +17,7 @@ import 'package:bootcamp_starter/splash_page/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'Shared Preferences/token_shared_pref.dart';
 import 'core/util/constants.dart';
 
 import 'features/auth/Api usage/Login/login_provider.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ShowStrongPassword(),
         ),
+        Provider<SharedAppPreferences>(create: (_) => SharedAppPreferences()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -58,8 +60,7 @@ class MyApp extends StatelessWidget {
                   color: kPrimaryColor),
             ),
             scaffoldBackgroundColor: kScaffoldColor),
-        home: SplashScreen(),
-
+        home: ProfileView(),
         routes: {
           OnBoarding.id: (context) => const OnBoarding(),
           OnBoardingView.id: (context) => const OnBoardingView(),
