@@ -1,3 +1,4 @@
+import 'package:bootcamp_starter/Shared%20Preferences/shared_pref.dart';
 import 'package:bootcamp_starter/features/auth/login_view.dart';
 import 'package:bootcamp_starter/features/location/location.dart';
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
+
 import '../Shared Preferences/shared_pref.dart';
+
 
 import '../animation_route.dart';
 
@@ -48,16 +51,12 @@ class ValidationSignProcess {
     if (formKey.currentState!.validate()) {
       SignInProvider signInProvider =
           Provider.of<SignInProvider>(context, listen: false);
-      Navigator.pushNamed(context, MainAppView.id);
-      final user = await signInProvider.signIn(
-        email,
-        password,
-      );
-      print(user);
-      print("==========================");
-      updatePosition(userId: user['user']['id'] );
-      print("==========================");
 
+      Navigator.pushNamed(context, MainAppView.id);
+
+
+
+      await signInProvider.signIn(email, password);
       if (signInProvider.response.status == Status.COMPLETED) {
         String? token = signInProvider.token;
         Map<String, dynamic> responseData = signInProvider.response.data!;
@@ -68,6 +67,7 @@ class ValidationSignProcess {
 
           await sharedPrefs.storeToken(token);
           await sharedPrefs.storeUserInfo(User.fromJson(userInfo));
+          Navigator.pushNamed(context, MainAppView.id);
         }
       }
     }

@@ -1,5 +1,6 @@
 import 'package:bootcamp_starter/Active%20Sharing/active_sharing.dart';
 import 'package:bootcamp_starter/Services/validation_password_strong_helper.dart';
+import 'package:bootcamp_starter/Shared%20Preferences/shared_pref.dart';
 
 import 'package:bootcamp_starter/features/auth/login_view.dart';
 import 'package:bootcamp_starter/features/auth/register_view.dart';
@@ -17,11 +18,12 @@ import 'package:bootcamp_starter/features/profile/profile_view.dart';
 import 'package:bootcamp_starter/features/search/search.dart';
 import 'package:bootcamp_starter/features/search/search_provider.dart';
 import 'package:bootcamp_starter/splash_page/splash_page.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 import 'Shared Preferences/shared_pref.dart';
+
 
 import 'core/util/constants.dart';
 
