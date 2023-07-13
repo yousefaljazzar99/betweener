@@ -15,9 +15,8 @@ import 'package:flutter_offline/flutter_offline.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Services/validation_sign.dart';
 import '../../core/util/Api static/api_response.dart';

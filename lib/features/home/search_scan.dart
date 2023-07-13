@@ -1,9 +1,10 @@
 import 'package:bootcamp_starter/core/util/assets.dart';
+import 'package:bootcamp_starter/features/search/search.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../Shared Preferences/token_shared_pref.dart';
+import '../../Shared Preferences/shared_pref.dart';
 
 class SearchScanContainerWidget extends StatelessWidget {
   const SearchScanContainerWidget({super.key});
@@ -79,10 +80,15 @@ class SearchScanContainerWidget extends StatelessWidget {
                       const SizedBox(
                         width: 28,
                       ),
-                      SvgPicture.asset(
-                        IconAssets.usersearch,
-                        width: 24,
-                        height: 25.82,
+                      GestureDetector(
+                        onTap: () {
+                          showSearch(context: context, delegate: UserSearch());
+                        },
+                        child: SvgPicture.asset(
+                          IconAssets.usersearch,
+                          width: 24,
+                          height: 25.82,
+                        ),
                       ),
                     ],
                   )

@@ -1,10 +1,12 @@
 import 'package:bootcamp_starter/features/auth/login_view.dart';
+import 'package:bootcamp_starter/features/location/location.dart';
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
- 
+
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
-import '../Shared Preferences/token_shared_pref.dart';
+import '../Shared Preferences/shared_pref.dart';
 
 import '../animation_route.dart';
 
@@ -30,15 +32,15 @@ class ValidationSignProcess {
     if (formKey.currentState!.validate()) {
       SignUpProvider signUpProvider =
           Provider.of<SignUpProvider>(context, listen: false);
+
       await signUpProvider.signUp(name!, email, password, confirmPassword!);
-   
+
       if (signUpProvider.response.status == Status.COMPLETED) {
         Navigator.push(
           context,
           AnimationBetweenScreen.goToHomePageRoute(LoginView()),
         );
       }
-      print('${signUpProvider.response.status} --------------------------- ');
     }
   }
 
@@ -47,7 +49,15 @@ class ValidationSignProcess {
       SignInProvider signInProvider =
           Provider.of<SignInProvider>(context, listen: false);
       Navigator.pushNamed(context, MainAppView.id);
-      await signInProvider.signIn(email, password);
+      final user = await signInProvider.signIn(
+        email,
+        password,
+      );
+      print(user);
+      print("==========================");
+      updatePosition(userId: user['user']['id'] );
+      print("==========================");
+
       if (signInProvider.response.status == Status.COMPLETED) {
         String? token = signInProvider.token;
         Map<String, dynamic> responseData = signInProvider.response.data!;
@@ -89,5 +99,15 @@ class ValidationSignProcess {
       return false;
     }
     return true;
+  }
+
+  Future getPosition() async {
+    bool services;
+    LocationPermission per;
+    services = await Geolocator.isLocationServiceEnabled();
+    if (services) {
+      print("GPS is off");
+    }
+    per = await Geolocator.checkPermission();
   }
 }

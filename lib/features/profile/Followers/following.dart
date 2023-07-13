@@ -8,10 +8,10 @@ import 'package:provider/provider.dart';
 import '../../../core/util/Api static/api_response.dart';
 import 'Api Configration/follow_provider.dart';
 
-class FollowerScreen extends StatelessWidget {
-  static String id = '/followerScreen';
+class FollowingScreen extends StatelessWidget {
+  static String id = '/followingScreen';
 
-  const FollowerScreen({super.key});
+  const FollowingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,15 +80,15 @@ class FollowerScreen extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (followProvider.followInfo.status == Status.COMPLETED) {
                     if (followProvider.followInfo.data!.followers.isNotEmpty) {
-                      final followerList =
-                          followProvider.followInfo.data!.followers;
+                      final followingList =
+                          followProvider.followInfo.data!.following;
                       return Consumer<FollowProvider>(
                         builder: (context, value, child) {
                           return Container(
                             child: Center(
                               child: Expanded(
                                 child: ListView.builder(
-                                  itemCount: followerList.length,
+                                  itemCount: followingList.length,
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                         onTap: () {
@@ -105,7 +105,7 @@ class FollowerScreen extends StatelessWidget {
                       );
                     } else {
                       return Center(
-                        child: Text('No Follow'),
+                        child: Text('No One Here'),
                       );
                     }
                   } else if (followProvider.followInfo.status == Status.ERROR) {

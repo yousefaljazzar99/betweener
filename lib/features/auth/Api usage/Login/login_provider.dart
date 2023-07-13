@@ -20,13 +20,8 @@ class SignInProvider extends ChangeNotifier {
     _response = ApiResponse.loading('Signing In');
     notifyListeners();
     try {
-      // Send the sign-in request and get the response
       var response = await _signInRepository.signIn(email, password);
-
-      // Extract the token from the response
       _token = response['token'];
-
-      // Update the state with the new response
       _response = ApiResponse.completed(response);
       notifyListeners();
     } catch (e) {
@@ -34,5 +29,7 @@ class SignInProvider extends ChangeNotifier {
       _response = ApiResponse.error(e.toString());
       notifyListeners();
     }
+
+    return response.data;
   }
 }
