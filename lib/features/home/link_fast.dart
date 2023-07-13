@@ -4,10 +4,17 @@ import 'package:flutter_svg/svg.dart';
 
 class LinkShareFastWidget extends StatelessWidget {
   const LinkShareFastWidget(
-      {super.key, required this.title, required this.urlImage});
+      {super.key,
+      required this.title,
+      required this.urlImage,
+      this.iconButtonCopy,
+      this.iconButtonDelete,
+      this.iconButtonEdit});
   final String title;
   final String urlImage;
-
+  final IconButton? iconButtonEdit;
+  final IconButton? iconButtonDelete;
+  final IconButton? iconButtonCopy;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +46,13 @@ class LinkShareFastWidget extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.copy))
+          Row(
+            children: [
+              iconButtonCopy ?? Container(),
+              iconButtonDelete ?? Container(),
+              iconButtonEdit ?? Container(),
+            ],
+          )
         ],
       ),
     );

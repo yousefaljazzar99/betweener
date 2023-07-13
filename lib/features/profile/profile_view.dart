@@ -3,19 +3,41 @@ import 'package:bootcamp_starter/features/auth/login_view.dart';
 import 'package:bootcamp_starter/features/home/link_fast.dart';
 
 import 'package:bootcamp_starter/features/profile/Followers/followers.dart';
+import 'package:bootcamp_starter/features/profile/Followers/following.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Shared Preferences/shared_pref.dart';
+import '../../core/util/Api static/api_response.dart';
 import '../../core/util/assets.dart';
+import '../../input_updated_link.dart';
+import '../Link/link_provider.dart';
+import '../Link/model.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   static String id = '/profileView';
 
   const ProfileView({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  TextEditingController usernameEditingController = TextEditingController();
+  TextEditingController linkEditingController = TextEditingController();
+  TextEditingController titleEditingController = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    usernameEditingController.dispose();
+    linkEditingController.dispose();
+    titleEditingController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +47,7 @@ class ProfileView extends StatelessWidget {
       IconAssets.insta,
       IconAssets.whatsapp
     ];
+    final linkProvider = LinkProvider();
     SharedAppPreferences sharedPrefs = SharedAppPreferences();
     TextStyle style = GoogleFonts.aBeeZee(
         color: Colors.white, fontSize: 16, fontWeight: FontWeight.w300);
@@ -140,7 +163,7 @@ class ProfileView extends StatelessWidget {
                         ),
                         MaterialButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, FollowerScreen.id);
+                            Navigator.pushNamed(context, FollowingScreen.id);
                           },
                           color: primaryColor,
                           child: Text(
@@ -162,35 +185,157 @@ class ProfileView extends StatelessWidget {
               SizedBox(
                 height: 50,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.menu),
-                  LinkShareFastWidget(title: name[0], urlImage: urls[0]),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.menu),
-                  LinkShareFastWidget(title: name[1], urlImage: urls[1]),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.menu),
-                  LinkShareFastWidget(title: name[2], urlImage: urls[2]),
-                ],
+              Container(
+                height: 300,
+                child: FutureBuilder(
+                  future: linkProvider.fetchLinkList(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      final linkList = linkProvider.linkList;
+                      if (linkList.status == Status.COMPLETED) {
+                        final links = linkList.data!;
+                        if (links.isNotEmpty) {
+                          return Consumer<LinkProvider>(
+                            builder: (context, value, child) {
+                              return Container(
+                                child: Center(
+                                  child: Expanded(
+                                    child: ListView.builder(
+                                      itemCount: links.length,
+                                      itemBuilder: (context, index) {
+                                        return LinkShareFastWidget(
+                                          title: links[index].title,
+                                          urlImage: IconAssets.facebook,
+                                          iconButtonCopy: IconButton(
+                                              onPressed: () async {
+                                                Clipboard.setData(ClipboardData(
+                                                    text: links[index].link));
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                      content: Text(
+                                                          'Copied to clipboard')),
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.copy,
+                                                size: 15,
+                                              )),
+                                          iconButtonEdit: IconButton(
+                                              onPressed: () async {
+                                                UpdateLink()
+                                                    .openAnimatedUpdateDialog(
+                                                        context,
+                                                        "Edit",
+                                                        "Update Link",
+                                                        usernameEditingController,
+                                                        linkEditingController,
+                                                        titleEditingController,
+                                                        links[index], () async {
+                                                  Links link = links[index];
+                                                  link.title =
+                                                      titleEditingController
+                                                          .text;
+                                                  link.username =
+                                                      usernameEditingController
+                                                          .text;
+                                                  link.link =
+                                                      linkEditingController
+                                                          .text;
+
+                                                  await value
+                                                      .updateLink(Links(
+                                                          id: link.id,
+                                                          title: link.title,
+                                                          link: link.link,
+                                                          username:
+                                                              link.username))
+                                                      .whenComplete(
+                                                    () {
+                                                      Navigator.of(context)
+                                                          .pop();
+
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                            content:
+                                                                Text('Edited')),
+                                                      );
+                                                    },
+                                                  );
+                                                });
+                                              },
+                                              icon: Icon(
+                                                Icons.edit,
+                                                size: 15,
+                                              )),
+                                          iconButtonDelete: IconButton(
+                                              onPressed: () async {
+                                                UpdateLink()
+                                                    .openAnimatedDeleteDialog(
+                                                        context,
+                                                        'Delete',
+                                                        "Are u sure?",
+                                                        () async {
+                                                  await value
+                                                      .deleteLink(links[index])
+                                                      .whenComplete(() {
+                                                    Navigator.of(context).pop();
+                                                    setState(() {
+                                                      
+                                                    });
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                          content:
+                                                              Text('Deleted')),
+                                                    );
+                                                  });
+                                                });
+                                              },
+                                              icon: Icon(
+                                                Icons.delete,
+                                                size: 15,
+                                              )),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          return Container(
+                            child: Text('No links found'),
+                          );
+                        }
+                      } else if (linkList.status == Status.ERROR) {
+                        return Container(
+                          child: Text('Error: ${linkList.message}'),
+                        );
+                      } else {
+                        return Container(
+                          child: Text('Loading...'),
+                        );
+                      }
+                    } else {
+                      // Show a loading indicator
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
               ),
               Spacer(),
               MaterialButton(
                 onPressed: () async {
                   SharedAppPreferences sharedPrefs =
                       context.read<SharedAppPreferences>();
-
                   final prefs = await SharedPreferences.getInstance();
                   await prefs.remove("token");
+                  await prefs.remove("user_info");
                   print(sharedPrefs.retrieveToken());
                   Navigator.pushNamed(context, LoginView.id);
                 },

@@ -1,9 +1,15 @@
 import 'package:bootcamp_starter/Shared%20Preferences/shared_pref.dart';
 import 'package:bootcamp_starter/features/auth/login_view.dart';
+import 'package:bootcamp_starter/features/location/location.dart';
 import 'package:bootcamp_starter/features/main_app/main_app_view.dart';
 
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
+
+
+import '../Shared Preferences/shared_pref.dart';
+
 
 import '../animation_route.dart';
 
@@ -29,6 +35,7 @@ class ValidationSignProcess {
     if (formKey.currentState!.validate()) {
       SignUpProvider signUpProvider =
           Provider.of<SignUpProvider>(context, listen: false);
+
       await signUpProvider.signUp(name!, email, password, confirmPassword!);
 
       if (signUpProvider.response.status == Status.COMPLETED) {
@@ -37,7 +44,6 @@ class ValidationSignProcess {
           AnimationBetweenScreen.goToHomePageRoute(LoginView()),
         );
       }
-      print('${signUpProvider.response.status} --------------------------- ');
     }
   }
 
@@ -45,6 +51,10 @@ class ValidationSignProcess {
     if (formKey.currentState!.validate()) {
       SignInProvider signInProvider =
           Provider.of<SignInProvider>(context, listen: false);
+
+      Navigator.pushNamed(context, MainAppView.id);
+
+
 
       await signInProvider.signIn(email, password);
       if (signInProvider.response.status == Status.COMPLETED) {
@@ -89,5 +99,15 @@ class ValidationSignProcess {
       return false;
     }
     return true;
+  }
+
+  Future getPosition() async {
+    bool services;
+    LocationPermission per;
+    services = await Geolocator.isLocationServiceEnabled();
+    if (services) {
+      print("GPS is off");
+    }
+    per = await Geolocator.checkPermission();
   }
 }
